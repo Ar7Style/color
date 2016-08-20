@@ -1,0 +1,657 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		068AF7391D3D961C00DC3D30 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 068AF7381D3D961C00DC3D30 /* HealthKit.framework */; };
+		068AF73B1D3D996F00DC3D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 068AF73A1D3D996F00DC3D30 /* GoogleService-Info.plist */; };
+		068AF7401D3EE6AF00DC3D30 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 068AF73C1D3EE6AF00DC3D30 /* MainInterface.storyboard */; };
+		068AF7411D3EE6AF00DC3D30 /* RocketListToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 068AF73D1D3EE6AF00DC3D30 /* RocketListToday.entitlements */; };
+		068AF7421D3EE6AF00DC3D30 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 068AF73F1D3EE6AF00DC3D30 /* TodayViewController.m */; };
+		06BD29BC1D6619BD0092296D /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06BD29BB1D6619BD0092296D /* EventKit.framework */; };
+		06BD29BF1D6633850092296D /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BD29BE1D6633850092296D /* EventManager.m */; };
+		06D297401D0B659300E5EBD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D2973F1D0B659300E5EBD3 /* main.m */; };
+		06D297431D0B659300E5EBD3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D297421D0B659300E5EBD3 /* AppDelegate.m */; };
+		06D297461D0B659300E5EBD3 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D297451D0B659300E5EBD3 /* TestViewController.m */; };
+		06D297491D0B659300E5EBD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06D297471D0B659300E5EBD3 /* Main.storyboard */; };
+		06D2974B1D0B659300E5EBD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06D2974A1D0B659300E5EBD3 /* Assets.xcassets */; };
+		06D2974E1D0B659300E5EBD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06D2974C1D0B659300E5EBD3 /* LaunchScreen.storyboard */; };
+		06D2975C1D0B660000E5EBD3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D2975B1D0B660000E5EBD3 /* NotificationCenter.framework */; };
+		06D297671D0B660000E5EBD3 /* ColorToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 06D297591D0B660000E5EBD3 /* ColorToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		06D297731D0C708800E5EBD3 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06D297721D0C708800E5EBD3 /* GoogleSignIn.bundle */; };
+		06D297791D0CC97400E5EBD3 /* AddAppsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D297781D0CC97400E5EBD3 /* AddAppsViewController.m */; };
+		06D2977C1D0CC9C800E5EBD3 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D2977B1D0CC9C800E5EBD3 /* TasksViewController.m */; };
+		0FC473418FC5057F6FD6B0C5 /* Pods_ColorToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE4D71CC3124CFBE5D4C2B1 /* Pods_ColorToday.framework */; };
+		F8BF2A0E1F6C6114D779CDD6 /* Pods_Color.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29CE458C781C0AD605191A1 /* Pods_Color.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		06D297651D0B660000E5EBD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06D297331D0B659300E5EBD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06D297581D0B660000E5EBD3;
+			remoteInfo = ColorToday;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		06D2976B1D0B660000E5EBD3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				06D297671D0B660000E5EBD3 /* ColorToday.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		068AF72F1D3D80C200DC3D30 /* Color.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Color.entitlements; sourceTree = "<group>"; };
+		068AF7381D3D961C00DC3D30 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		068AF73A1D3D996F00DC3D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		068AF73C1D3EE6AF00DC3D30 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		068AF73D1D3EE6AF00DC3D30 /* RocketListToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RocketListToday.entitlements; sourceTree = "<group>"; };
+		068AF73E1D3EE6AF00DC3D30 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		068AF73F1D3EE6AF00DC3D30 /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		068AF7431D3EEA9C00DC3D30 /* ColorToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ColorToday.entitlements; sourceTree = "<group>"; };
+		06BD29BB1D6619BD0092296D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		06BD29BD1D6633850092296D /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
+		06BD29BE1D6633850092296D /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
+		06D2973B1D0B659300E5EBD3 /* Color.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Color.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06D2973F1D0B659300E5EBD3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		06D297411D0B659300E5EBD3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		06D297421D0B659300E5EBD3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		06D297441D0B659300E5EBD3 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		06D297451D0B659300E5EBD3 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		06D297481D0B659300E5EBD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		06D2974A1D0B659300E5EBD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		06D2974D1D0B659300E5EBD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		06D2974F1D0B659300E5EBD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06D297591D0B660000E5EBD3 /* ColorToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ColorToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		06D2975B1D0B660000E5EBD3 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		06D297641D0B660000E5EBD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06D297721D0C708800E5EBD3 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
+		06D297771D0CC97400E5EBD3 /* AddAppsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAppsViewController.h; sourceTree = "<group>"; };
+		06D297781D0CC97400E5EBD3 /* AddAppsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAppsViewController.m; sourceTree = "<group>"; };
+		06D2977A1D0CC9C800E5EBD3 /* TasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
+		06D2977B1D0CC9C800E5EBD3 /* TasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
+		1B7D84564095AF0E3FEA99CE /* Pods-Color.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Color.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Color/Pods-Color.debug.xcconfig"; sourceTree = "<group>"; };
+		3C26D5E9A3B76E55E61D0428 /* Pods-ColorToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-ColorToday/Pods-ColorToday.release.xcconfig"; sourceTree = "<group>"; };
+		8F20592056189229992F0A52 /* Pods-Color.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Color.release.xcconfig"; path = "Pods/Target Support Files/Pods-Color/Pods-Color.release.xcconfig"; sourceTree = "<group>"; };
+		9AE4D71CC3124CFBE5D4C2B1 /* Pods_ColorToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A29CE458C781C0AD605191A1 /* Pods_Color.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Color.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0145F912A0D2FD7302C0D4 /* Pods-ColorToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ColorToday/Pods-ColorToday.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06D297381D0B659300E5EBD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06BD29BC1D6619BD0092296D /* EventKit.framework in Frameworks */,
+				068AF7391D3D961C00DC3D30 /* HealthKit.framework in Frameworks */,
+				F8BF2A0E1F6C6114D779CDD6 /* Pods_Color.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06D297561D0B660000E5EBD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06D2975C1D0B660000E5EBD3 /* NotificationCenter.framework in Frameworks */,
+				0FC473418FC5057F6FD6B0C5 /* Pods_ColorToday.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06D297321D0B659200E5EBD3 = {
+			isa = PBXGroup;
+			children = (
+				06D297721D0C708800E5EBD3 /* GoogleSignIn.bundle */,
+				06D2973D1D0B659300E5EBD3 /* Color */,
+				06D2975D1D0B660000E5EBD3 /* ColorToday */,
+				06D2975A1D0B660000E5EBD3 /* Frameworks */,
+				06D2973C1D0B659300E5EBD3 /* Products */,
+				FFA359998577B0B2CAFF9499 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		06D2973C1D0B659300E5EBD3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06D2973B1D0B659300E5EBD3 /* Color.app */,
+				06D297591D0B660000E5EBD3 /* ColorToday.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		06D2973D1D0B659300E5EBD3 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				068AF72F1D3D80C200DC3D30 /* Color.entitlements */,
+				06D297411D0B659300E5EBD3 /* AppDelegate.h */,
+				06D297421D0B659300E5EBD3 /* AppDelegate.m */,
+				06BD29BD1D6633850092296D /* EventManager.h */,
+				06BD29BE1D6633850092296D /* EventManager.m */,
+				06D297441D0B659300E5EBD3 /* TestViewController.h */,
+				06D297451D0B659300E5EBD3 /* TestViewController.m */,
+				06D297471D0B659300E5EBD3 /* Main.storyboard */,
+				06D297771D0CC97400E5EBD3 /* AddAppsViewController.h */,
+				06D297781D0CC97400E5EBD3 /* AddAppsViewController.m */,
+				06D2977A1D0CC9C800E5EBD3 /* TasksViewController.h */,
+				06D2977B1D0CC9C800E5EBD3 /* TasksViewController.m */,
+				06D2974A1D0B659300E5EBD3 /* Assets.xcassets */,
+				06D2974C1D0B659300E5EBD3 /* LaunchScreen.storyboard */,
+				06D2974F1D0B659300E5EBD3 /* Info.plist */,
+				068AF73A1D3D996F00DC3D30 /* GoogleService-Info.plist */,
+				06D2973E1D0B659300E5EBD3 /* Supporting Files */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		06D2973E1D0B659300E5EBD3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06D2973F1D0B659300E5EBD3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06D2975A1D0B660000E5EBD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06BD29BB1D6619BD0092296D /* EventKit.framework */,
+				068AF7381D3D961C00DC3D30 /* HealthKit.framework */,
+				06D2975B1D0B660000E5EBD3 /* NotificationCenter.framework */,
+				A29CE458C781C0AD605191A1 /* Pods_Color.framework */,
+				9AE4D71CC3124CFBE5D4C2B1 /* Pods_ColorToday.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		06D2975D1D0B660000E5EBD3 /* ColorToday */ = {
+			isa = PBXGroup;
+			children = (
+				068AF7431D3EEA9C00DC3D30 /* ColorToday.entitlements */,
+				068AF73C1D3EE6AF00DC3D30 /* MainInterface.storyboard */,
+				068AF73D1D3EE6AF00DC3D30 /* RocketListToday.entitlements */,
+				068AF73E1D3EE6AF00DC3D30 /* TodayViewController.h */,
+				068AF73F1D3EE6AF00DC3D30 /* TodayViewController.m */,
+				06D297641D0B660000E5EBD3 /* Info.plist */,
+			);
+			path = ColorToday;
+			sourceTree = "<group>";
+		};
+		FFA359998577B0B2CAFF9499 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1B7D84564095AF0E3FEA99CE /* Pods-Color.debug.xcconfig */,
+				8F20592056189229992F0A52 /* Pods-Color.release.xcconfig */,
+				BB0145F912A0D2FD7302C0D4 /* Pods-ColorToday.debug.xcconfig */,
+				3C26D5E9A3B76E55E61D0428 /* Pods-ColorToday.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		06D2973A1D0B659300E5EBD3 /* Color */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06D297521D0B659300E5EBD3 /* Build configuration list for PBXNativeTarget "Color" */;
+			buildPhases = (
+				16A1E434A8E2339397C9CAC4 /* [CP] Check Pods Manifest.lock */,
+				06D297371D0B659300E5EBD3 /* Sources */,
+				06D297381D0B659300E5EBD3 /* Frameworks */,
+				06D297391D0B659300E5EBD3 /* Resources */,
+				06D2976B1D0B660000E5EBD3 /* Embed App Extensions */,
+				2FAD4ABC22CC84EAA1E1B346 /* [CP] Embed Pods Frameworks */,
+				AD51841638DBAD0764B3756C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06D297661D0B660000E5EBD3 /* PBXTargetDependency */,
+			);
+			name = Color;
+			productName = Color;
+			productReference = 06D2973B1D0B659300E5EBD3 /* Color.app */;
+			productType = "com.apple.product-type.application";
+		};
+		06D297581D0B660000E5EBD3 /* ColorToday */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06D297681D0B660000E5EBD3 /* Build configuration list for PBXNativeTarget "ColorToday" */;
+			buildPhases = (
+				A787E4BEDB22C78195B41129 /* [CP] Check Pods Manifest.lock */,
+				06D297551D0B660000E5EBD3 /* Sources */,
+				06D297561D0B660000E5EBD3 /* Frameworks */,
+				06D297571D0B660000E5EBD3 /* Resources */,
+				940A2263BB9270409E46EB77 /* [CP] Embed Pods Frameworks */,
+				296B87720FA34AE6D90D0701 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorToday;
+			productName = ColorToday;
+			productReference = 06D297591D0B660000E5EBD3 /* ColorToday.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		06D297331D0B659300E5EBD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Tareyev Gregory";
+				TargetAttributes = {
+					06D2973A1D0B659300E5EBD3 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 66S8MTL2NN;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
+					};
+					06D297581D0B660000E5EBD3 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 66S8MTL2NN;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 06D297361D0B659300E5EBD3 /* Build configuration list for PBXProject "Color" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 06D297321D0B659200E5EBD3;
+			productRefGroup = 06D2973C1D0B659300E5EBD3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				06D2973A1D0B659300E5EBD3 /* Color */,
+				06D297581D0B660000E5EBD3 /* ColorToday */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		06D297391D0B659300E5EBD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06D2974E1D0B659300E5EBD3 /* LaunchScreen.storyboard in Resources */,
+				06D297731D0C708800E5EBD3 /* GoogleSignIn.bundle in Resources */,
+				06D2974B1D0B659300E5EBD3 /* Assets.xcassets in Resources */,
+				06D297491D0B659300E5EBD3 /* Main.storyboard in Resources */,
+				068AF73B1D3D996F00DC3D30 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06D297571D0B660000E5EBD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				068AF7401D3EE6AF00DC3D30 /* MainInterface.storyboard in Resources */,
+				068AF7411D3EE6AF00DC3D30 /* RocketListToday.entitlements in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		16A1E434A8E2339397C9CAC4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		296B87720FA34AE6D90D0701 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorToday/Pods-ColorToday-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FAD4ABC22CC84EAA1E1B346 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Color/Pods-Color-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		940A2263BB9270409E46EB77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorToday/Pods-ColorToday-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A787E4BEDB22C78195B41129 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AD51841638DBAD0764B3756C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Color/Pods-Color-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		06D297371D0B659300E5EBD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06D297461D0B659300E5EBD3 /* TestViewController.m in Sources */,
+				06D2977C1D0CC9C800E5EBD3 /* TasksViewController.m in Sources */,
+				06BD29BF1D6633850092296D /* EventManager.m in Sources */,
+				06D297431D0B659300E5EBD3 /* AppDelegate.m in Sources */,
+				06D297791D0CC97400E5EBD3 /* AddAppsViewController.m in Sources */,
+				06D297401D0B659300E5EBD3 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06D297551D0B660000E5EBD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				068AF7421D3EE6AF00DC3D30 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06D297661D0B660000E5EBD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06D297581D0B660000E5EBD3 /* ColorToday */;
+			targetProxy = 06D297651D0B660000E5EBD3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		06D297471D0B659300E5EBD3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06D297481D0B659300E5EBD3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		06D2974C1D0B659300E5EBD3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06D2974D1D0B659300E5EBD3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		06D297501D0B659300E5EBD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		06D297511D0B659300E5EBD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		06D297531D0B659300E5EBD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B7D84564095AF0E3FEA99CE /* Pods-Color.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Color/Color.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Color/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GT.Color;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = Color/SwiftBridging.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		06D297541D0B659300E5EBD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F20592056189229992F0A52 /* Pods-Color.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Color/Color.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Color/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GT.Color;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = Color/SwiftBridging.h;
+			};
+			name = Release;
+		};
+		06D297691D0B660000E5EBD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB0145F912A0D2FD7302C0D4 /* Pods-ColorToday.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ColorToday/ColorToday.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ColorToday/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GT.Color.ColorToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		06D2976A1D0B660000E5EBD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C26D5E9A3B76E55E61D0428 /* Pods-ColorToday.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ColorToday/ColorToday.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ColorToday/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GT.Color.ColorToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06D297361D0B659300E5EBD3 /* Build configuration list for PBXProject "Color" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06D297501D0B659300E5EBD3 /* Debug */,
+				06D297511D0B659300E5EBD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06D297521D0B659300E5EBD3 /* Build configuration list for PBXNativeTarget "Color" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06D297531D0B659300E5EBD3 /* Debug */,
+				06D297541D0B659300E5EBD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06D297681D0B660000E5EBD3 /* Build configuration list for PBXNativeTarget "ColorToday" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06D297691D0B660000E5EBD3 /* Debug */,
+				06D2976A1D0B660000E5EBD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 06D297331D0B659300E5EBD3 /* Project object */;
+}
