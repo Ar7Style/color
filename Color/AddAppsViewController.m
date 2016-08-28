@@ -12,47 +12,126 @@
 #import <AFNetworking/AFNetworking.h>
 #import "EventManager.h"
 
+#import <GoogleSignIn/GoogleSignIn.h>
+#import "AFOAuth2Manager.h"
+
 
 
 #define USER_CACHE [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.color.ru"]
 
+static NSString *const kKeychainItemName = @"Gmail API";
+static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa9qr.apps.googleusercontent.com";
+
 @import Firebase;
 @import FirebaseAuthUI;
 
-@implementation AddAppsViewController
+
+
+@implementation AddAppsViewController 
+
+
+@synthesize service = _service;
+@synthesize output = _output;
 
 -(void) viewDidLoad {
     [super viewDidLoad];
+    
+    //API_KEY : AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0
     [_gmailButton setTitle:[[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Gmail" forState:UIControlStateNormal];
     [_healthKitButton setTitle:[[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+HealthKit" forState:UIControlStateNormal];
     [_remindersButton setTitle:[[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Reminders" forState:UIControlStateNormal];
+    
+    
+    
+    
+    /* for Gmail auth */
+    self.service = [[GTLServiceGmail alloc] init];
+    self.service.authorizer =
+    [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
+                                                          clientID:kClientID
+                                                      clientSecret:nil];
+    
+    // [GIDSignIn sharedInstance].delegate = self;
+    [[GIDSignIn sharedInstance] setScopes:[NSArray arrayWithObject: @"https://www.googleapis.com/auth/plus.me"]];
+    [GIDSignIn sharedInstance].clientID = kClientID;
+//    [[GIDSignIn sharedInstance] signIn];
+
+   // [[GIDSignIn sharedInstance] signInSilently];
+    
+   NSLog(@"refresh token: %@", [GIDSignIn sharedInstance].currentUser.authentication.accessTokenExpirationDate);
+    
+    if ([GIDSignIn sharedInstance].currentUser) {
+        NSLog(@"Signed in");
+    } else {
+        NSLog(@"Not signed in");
+    }
+   // [self performSelectorOnMainThread:@selector(viewController:finishedWithAuth:error:) withObject:nil waitUntilDone:YES];
+   // [self performSelector:@selector(viewController:finishedWithAuth:error:) withObject:nil];
+    
+    GIDAuthentication* obj;
+    
+//    [obj refreshTokensWithHandler:^(GIDAuthentication *authentication, NSError *error){
+//        dispatch_async(dispatch_get_main_queue(),
+//                       ^{
+//                           NSLog(@"new token: %@", authentication.accessToken);
+//                           [USER_CACHE setValue:authentication.accessToken forKey:@"googleAccessToken"];
+//                       });
+//    }];
+    
+//    [obj getTokensWithHandler:^(GIDAuthentication *authentication, NSError *error){
+//        if (error != nil) {
+//            NSLog(@"error in new token: %@", error.localizedDescription);
+//        }
+//                dispatch_async(dispatch_get_main_queue(),
+//                               
+//                               ^{ NSLog(@"new token: %@", authentication.accessToken);
+//                                   
+//                               });
+//            }];
+    
+   // [self getNewTokenForGoogle];
+    
+    
+    NSLog(@"AT from UserDefaults on HS: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    
+}
+
+-(void) getNewTokenForGoogle {
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://securetoken.googleapis.com/v1/token?key=AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0"]];
+   // NSLog(@"Access token: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *parameters = @{@"grant_type": @"refresh_token", @"refresh_token": [USER_CACHE valueForKey:@"googleAccessToken"]};//grant_type=refresh_token&refresh_token=REFRESH_TOKEN
+    [manager POST:URL.absoluteString parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+       // [USER_CACHE setValue:responseObject[@"messagesUnread"] forKey:@"numberOfUnreadMessages"];
+        
+        
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-//    if ([[USER_CACHE valueForKey:@"isAuthRocketlist"] isEqualToString:@"1"]) {
-//        _rocketListButton.enabled = NO;
-//        [_rocketListButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//    }
-//    if ([[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"]) {
-//        _gmailButton.enabled = NO;
-//    }
-//    if ([[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"]) {
-//        _healthKitButton.enabled = NO;
-//    }
-  //  if ([[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"])
-        
+    
+    if ( [[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] || [[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"] || [[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"]) {
+        [_topLabel setHidden:YES];
+    }
+    
+    
+    NSLog(@"test 1");
     if ([[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self makeRemindersLabelVisible];
         });
     }
+    NSLog(@"test 2");
+
     if ([[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self makeGmailLabelVisible];
+            [self makeGmailLabelVisibleWithToken:[USER_CACHE valueForKey:@"googleAccessToken"]];
         });
     }
     if ([[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"]) {
@@ -63,11 +142,100 @@
     
 }
 
--(void) makeGmailLabelVisible {
-    [_gmailButton setEnabled:NO];
+
+/// not used
+- (void)fetchNumberOfUnreadMessages {
+    //    self.output.text = @"Getting labels...";
+    //    GTLQueryGmail *query = [GTLQueryGmail queryForUsersLabelsList];
+    //    [self.service executeQuery:query
+    //                      delegate:self
+    //             didFinishSelector:@selector(displayResultWithTicket:finishedWithObject:error:)];
+    //                                          //secret:@"AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0"];
     
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/gmail/v1/users/me/labels/UNREAD?access_token=%@", [USER_CACHE valueForKey:@"googleAccessToken"]]];
     NSLog(@"Access token: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        NSLog(@"keyNumber: %@", responseObject[@"messagesUnread"]);
+        [USER_CACHE setValue:responseObject[@"messagesUnread"] forKey:@"numberOfUnreadMessages"];
+        
+        
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    
+}
+
+
+
+// Creates the auth controller for authorizing access to Gmail API.
+- (GTMOAuth2ViewControllerTouch *)createAuthController {
+    GTMOAuth2ViewControllerTouch *authController;
+    // If modifying these scopes, delete your previously saved credentials by
+    // resetting the iOS simulator or uninstall the app.
+    NSArray *scopes = [NSArray arrayWithObjects:kGTLAuthScopeGmailReadonly, nil];
+    authController = [[GTMOAuth2ViewControllerTouch alloc]
+                      initWithScope:[scopes componentsJoinedByString:@" "]
+                      clientID:kClientID
+                      clientSecret:nil
+                      keychainItemName:kKeychainItemName
+                      delegate:self
+                      finishedSelector:@selector(viewController:finishedWithAuth:error:)];
+    return authController;
+}
+
+
+
+// Handle completion of the authorization process, and update the Gmail API
+// with the new credentials.
+- (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
+      finishedWithAuth:(GTMOAuth2Authentication *)authResult
+                 error:(NSError *)error {
+    if (error != nil) {
+        [self showAlert:@"Authentication Error" message:error.localizedDescription];
+        self.service.authorizer = nil;
+    }
+    else {
+        self.service.authorizer = authResult;
+        //[[GIDSignIn sharedInstance]signIn];
+        //[authResult ref]
+        NSLog(@"Token: %@ id: %@ refreshed: %@", authResult.accessToken, authResult.userID, authResult.refreshToken);
+        [self makeGmailLabelVisibleWithToken:authResult.accessToken]; [authResult refreshToken];
+        [USER_CACHE setValue:authResult.accessToken forKey:@"googleAccessToken"];
+        [USER_CACHE setValue:@"1" forKey:@"isAuthGmail"];
+        [USER_CACHE synchronize];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }
+}
+
+
+
+// Helper for showing an alert
+- (void)showAlert:(NSString *)title message:(NSString *)message {
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:title
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok =
+    [UIAlertAction actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+     {
+         [alert dismissViewControllerAnimated:YES completion:nil];
+     }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+-(void) makeGmailLabelVisibleWithToken:(NSString*)accessToken {
+    [_gmailButton setEnabled:NO];
+    
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/gmail/v1/users/me/labels/UNREAD?access_token=%@", accessToken]]; //[USER_CACHE valueForKey:@"googleAccessToken"]]];
+   // NSLog(@"Access token: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON from Google: %@", responseObject);
@@ -254,7 +422,7 @@
                     [_remindersButton setTitle:[NSString stringWithFormat:@"finish %ld %@", reminders.count, (reminders.count == 1) ? @"task" : @"tasks"] forState:UIControlStateNormal];
                     [_remindersButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
                     [USER_CACHE setValue:@"1" forKey:@"isAuthReminders"];
-                    [USER_CACHE setValue:[NSString stringWithFormat:@"%ld", reminders.count] forKey:@"rocketlistTasksCount"];
+                    [USER_CACHE setValue:[NSString stringWithFormat:@"%ld", reminders.count] forKey:@"remindersTasksCount"];
                     [USER_CACHE synchronize];
                     
                 });
@@ -341,6 +509,57 @@
 //        [USER_CACHE setValue:@"1" forKey:@"isAuth"];
 //    }
 //}
+
+
+- (IBAction)gmailChoosed:(id)sender {
+    if (!self.service.authorizer.canAuthorize) {
+        // Not yet authorized, request authorization by pushing the login UI onto the UI stack.
+      //  [self presentViewController:[self createAuthController] animated:YES completion:nil];
+        GIDSignIn *signin = [GIDSignIn sharedInstance];
+        signin.shouldFetchBasicProfile = true;
+        signin.delegate = self;
+        signin.uiDelegate = self;
+        [signin hasAuthInKeychain];
+        [signin signIn];
+    } else {
+        [self makeGmailLabelVisibleWithToken:[USER_CACHE valueForKey:@"googleAccessToken"]];
+        
+    }
+
+}
+
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    // Perform any operations on signed in user here.
+    if (error == nil) {
+        NSString *userId = user.userID;
+        NSLog(@"didSignInForUser with user: %@", user.userID);
+    } else {
+        NSLog(@"didSignInForUser fail with error %@", error.localizedDescription);
+    }
+}
+
+- (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    // Perform any operations when the user disconnects from app here.
+    NSLog(@"disconnected");
+}
+
+- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error {
+    NSLog(@"%@",error.description);
+    NSLog(@"signInWillDispatch");
+}
+
+// Present a view that prompts the user to sign in with Google
+- (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController {
+    //present view controller
+    [self presentViewController:[self createAuthController] animated:YES completion:nil];
+
+}
+
+// Dismiss the "Sign in with Google" view
+- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController {
+    //dismiss view controller
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 
 - (IBAction)remindersChoosed:(id)sender {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

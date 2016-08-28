@@ -28,13 +28,17 @@
     [super viewDidLoad];
     self.tableView.dataSource =self;
     self.tableView.delegate = self;
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
     
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self.tableView reloadData];
+    });
     self.preferredContentSize = self.tableView.contentSize;
 
 }
@@ -53,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -102,9 +106,27 @@
 //    }else{
 //            cell.textLabel.text = [_todoList objectAtIndex:indexPath.row];
 //   }
-    NSLog(@"From today: %@",[USER_CACHE valueForKey:@"rocketlistTasksCount"] );
+   // NSLog(@"From today: %@",[USER_CACHE valueForKey:@"rocketlistTasksCount"] );
     
-    cell.textLabel.text = [NSString stringWithFormat:@"finish %@ tasks", [USER_CACHE valueForKey:@"rocketlistTasksCount"]];
+ //   cell.textLabel.text = [NSString stringWithFormat:@"finish %@ tasks", [USER_CACHE valueForKey:@"rocketlistTasksCount"]];
+    if (indexPath.row == 0 ) {
+        if( ![[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] )
+            cell.textLabel.text = [NSString stringWithFormat:@"Connect Gmail"];
+        else
+            cell.textLabel.text = [NSString stringWithFormat:@"read %@ messages", [USER_CACHE valueForKey:@"numberOfUnreadMessages"]];
+    }
+    if (indexPath.row == 1 ) {
+        if( [[USER_CACHE valueForKey:@"remindersTasksCount"] length] ==0)
+             cell.textLabel.text = [NSString stringWithFormat:@"Connect reminders"];
+        else
+            cell.textLabel.text = [NSString stringWithFormat:@"finish %@ tasks", [USER_CACHE valueForKey:@"remindersTasksCount"]];
+    }
+    if (indexPath.row == 2 ) {
+        if ( [[USER_CACHE valueForKey:@"HealthkitStepsCount"] length] ==0)
+              cell.textLabel.text = [NSString stringWithFormat:@"Connect HealthKit"];
+        else
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ steps left", [USER_CACHE valueForKey:@"HealthkitStepsCount"]];
+    }
     
     return cell;
 }

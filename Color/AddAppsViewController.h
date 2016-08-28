@@ -12,11 +12,15 @@
 #import "GTLGmail.h"
 #import <GoogleSignIn/GoogleSignIn.h>
 
-@interface AddAppsViewController : UIViewController <GIDSignInUIDelegate>
+@interface AddAppsViewController : UIViewController <GIDSignInUIDelegate, GIDSignInDelegate>
+
+@property (nonatomic, strong) GTLServiceGmail *service;
+@property (nonatomic, strong) UITextView *output;
+
+@property (weak, nonatomic) IBOutlet UILabel *topLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *gmailButton;
 @property (weak, nonatomic) IBOutlet UIButton *remindersButton;
 @property (weak, nonatomic) IBOutlet UIButton *healthKitButton;
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
 
 @end
