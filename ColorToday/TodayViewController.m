@@ -112,20 +112,27 @@
     if (indexPath.row == 0 ) {
         if( ![[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] )
             cell.textLabel.text = [NSString stringWithFormat:@"Connect Gmail"];
-        else
+        else {
+            cell.textLabel.textColor = [UIColor redColor];
             cell.textLabel.text = [NSString stringWithFormat:@"read %@ messages", [USER_CACHE valueForKey:@"numberOfUnreadMessages"]];
+        }
     }
     if (indexPath.row == 1 ) {
         if( [[USER_CACHE valueForKey:@"remindersTasksCount"] length] ==0)
              cell.textLabel.text = [NSString stringWithFormat:@"Connect reminders"];
-        else
+        else {
             cell.textLabel.text = [NSString stringWithFormat:@"finish %@ tasks", [USER_CACHE valueForKey:@"remindersTasksCount"]];
+            cell.textLabel.textColor = [UIColor orangeColor];
+        }
     }
     if (indexPath.row == 2 ) {
         if ( [[USER_CACHE valueForKey:@"HealthkitStepsCount"] length] ==0)
               cell.textLabel.text = [NSString stringWithFormat:@"Connect HealthKit"];
         else
+        {
             cell.textLabel.text = [NSString stringWithFormat:@"%@ steps left", [USER_CACHE valueForKey:@"HealthkitStepsCount"]];
+            cell.textLabel.textColor = [UIColor colorWithRed:27.0/100.0 green:86.0/100.0 blue:37.0/100.0 alpha:1.0];
+        }
     }
     
     return cell;

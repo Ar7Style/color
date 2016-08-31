@@ -10,7 +10,7 @@
 		068AF7391D3D961C00DC3D30 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 068AF7381D3D961C00DC3D30 /* HealthKit.framework */; };
 		068AF73B1D3D996F00DC3D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 068AF73A1D3D996F00DC3D30 /* GoogleService-Info.plist */; };
 		068AF7401D3EE6AF00DC3D30 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 068AF73C1D3EE6AF00DC3D30 /* MainInterface.storyboard */; };
-		068AF7411D3EE6AF00DC3D30 /* RocketListToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 068AF73D1D3EE6AF00DC3D30 /* RocketListToday.entitlements */; };
+		068AF7411D3EE6AF00DC3D30 /* ColorTodday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 068AF73D1D3EE6AF00DC3D30 /* ColorTodday.entitlements */; };
 		068AF7421D3EE6AF00DC3D30 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 068AF73F1D3EE6AF00DC3D30 /* TodayViewController.m */; };
 		06A70D941D7375F100DA95F5 /* Icon-App-29x29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A70D871D7375F100DA95F5 /* Icon-App-29x29@1x.png */; };
 		06A70D951D7375F100DA95F5 /* Icon-App-29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A70D881D7375F100DA95F5 /* Icon-App-29x29@2x.png */; };
@@ -25,6 +25,8 @@
 		06A70D9E1D7375F100DA95F5 /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A70D911D7375F100DA95F5 /* Icon-App-76x76@2x.png */; };
 		06A70D9F1D7375F100DA95F5 /* Icon-App-76x76@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A70D921D7375F100DA95F5 /* Icon-App-76x76@3x.png */; };
 		06A70DA01D7375F100DA95F5 /* Icon-App-83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A70D931D7375F100DA95F5 /* Icon-App-83.5x83.5@2x.png */; };
+		06A70DA51D74AF3F00DA95F5 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A70DA41D74AF3F00DA95F5 /* WelcomeViewController.m */; };
+		06A70DA81D760C4C00DA95F5 /* update.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A70DA71D760C4C00DA95F5 /* update.png */; };
 		06BD29BC1D6619BD0092296D /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06BD29BB1D6619BD0092296D /* EventKit.framework */; };
 		06BD29BF1D6633850092296D /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BD29BE1D6633850092296D /* EventManager.m */; };
 		06D297401D0B659300E5EBD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D2973F1D0B659300E5EBD3 /* main.m */; };
@@ -38,7 +40,6 @@
 		06D297731D0C708800E5EBD3 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06D297721D0C708800E5EBD3 /* GoogleSignIn.bundle */; };
 		06D297791D0CC97400E5EBD3 /* AddAppsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D297781D0CC97400E5EBD3 /* AddAppsViewController.m */; };
 		06D2977C1D0CC9C800E5EBD3 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D2977B1D0CC9C800E5EBD3 /* TasksViewController.m */; };
-		0FC473418FC5057F6FD6B0C5 /* Pods_ColorToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE4D71CC3124CFBE5D4C2B1 /* Pods_ColorToday.framework */; };
 		F8BF2A0E1F6C6114D779CDD6 /* Pods_Color.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29CE458C781C0AD605191A1 /* Pods_Color.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +72,7 @@
 		068AF7381D3D961C00DC3D30 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		068AF73A1D3D996F00DC3D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		068AF73C1D3EE6AF00DC3D30 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
-		068AF73D1D3EE6AF00DC3D30 /* RocketListToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RocketListToday.entitlements; sourceTree = "<group>"; };
+		068AF73D1D3EE6AF00DC3D30 /* ColorTodday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ColorTodday.entitlements; sourceTree = "<group>"; };
 		068AF73E1D3EE6AF00DC3D30 /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		068AF73F1D3EE6AF00DC3D30 /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		068AF7431D3EEA9C00DC3D30 /* ColorToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ColorToday.entitlements; sourceTree = "<group>"; };
@@ -88,6 +89,9 @@
 		06A70D911D7375F100DA95F5 /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
 		06A70D921D7375F100DA95F5 /* Icon-App-76x76@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@3x.png"; sourceTree = "<group>"; };
 		06A70D931D7375F100DA95F5 /* Icon-App-83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-83.5x83.5@2x.png"; sourceTree = "<group>"; };
+		06A70DA31D74AF3F00DA95F5 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		06A70DA41D74AF3F00DA95F5 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		06A70DA71D760C4C00DA95F5 /* update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update.png; sourceTree = "<group>"; };
 		06BD29BB1D6619BD0092296D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		06BD29BD1D6633850092296D /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		06BD29BE1D6633850092296D /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
@@ -133,13 +137,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				06D2975C1D0B660000E5EBD3 /* NotificationCenter.framework in Frameworks */,
-				0FC473418FC5057F6FD6B0C5 /* Pods_ColorToday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06A70DA61D760C3400DA95F5 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				06A70D871D7375F100DA95F5 /* Icon-App-29x29@1x.png */,
+				06A70D881D7375F100DA95F5 /* Icon-App-29x29@2x.png */,
+				06A70D891D7375F100DA95F5 /* Icon-App-29x29@3x.png */,
+				06A70D8A1D7375F100DA95F5 /* Icon-App-40x40@1x.png */,
+				06A70D8B1D7375F100DA95F5 /* Icon-App-40x40@2x.png */,
+				06A70D8C1D7375F100DA95F5 /* Icon-App-40x40@3x.png */,
+				06A70D8D1D7375F100DA95F5 /* Icon-App-60x60@1x.png */,
+				06A70D8E1D7375F100DA95F5 /* Icon-App-60x60@2x.png */,
+				06A70D8F1D7375F100DA95F5 /* Icon-App-60x60@3x.png */,
+				06A70D901D7375F100DA95F5 /* Icon-App-76x76@1x.png */,
+				06A70D911D7375F100DA95F5 /* Icon-App-76x76@2x.png */,
+				06A70D921D7375F100DA95F5 /* Icon-App-76x76@3x.png */,
+				06A70D931D7375F100DA95F5 /* Icon-App-83.5x83.5@2x.png */,
+			);
+			name = Icon;
+			sourceTree = "<group>";
+		};
 		06D297321D0B659200E5EBD3 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +192,8 @@
 				06D297421D0B659300E5EBD3 /* AppDelegate.m */,
 				06BD29BD1D6633850092296D /* EventManager.h */,
 				06BD29BE1D6633850092296D /* EventManager.m */,
+				06A70DA31D74AF3F00DA95F5 /* WelcomeViewController.h */,
+				06A70DA41D74AF3F00DA95F5 /* WelcomeViewController.m */,
 				06D297441D0B659300E5EBD3 /* TestViewController.h */,
 				06D297451D0B659300E5EBD3 /* TestViewController.m */,
 				06D297471D0B659300E5EBD3 /* Main.storyboard */,
@@ -189,19 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				06D2973F1D0B659300E5EBD3 /* main.m */,
-				06A70D871D7375F100DA95F5 /* Icon-App-29x29@1x.png */,
-				06A70D881D7375F100DA95F5 /* Icon-App-29x29@2x.png */,
-				06A70D891D7375F100DA95F5 /* Icon-App-29x29@3x.png */,
-				06A70D8A1D7375F100DA95F5 /* Icon-App-40x40@1x.png */,
-				06A70D8B1D7375F100DA95F5 /* Icon-App-40x40@2x.png */,
-				06A70D8C1D7375F100DA95F5 /* Icon-App-40x40@3x.png */,
-				06A70D8D1D7375F100DA95F5 /* Icon-App-60x60@1x.png */,
-				06A70D8E1D7375F100DA95F5 /* Icon-App-60x60@2x.png */,
-				06A70D8F1D7375F100DA95F5 /* Icon-App-60x60@3x.png */,
-				06A70D901D7375F100DA95F5 /* Icon-App-76x76@1x.png */,
-				06A70D911D7375F100DA95F5 /* Icon-App-76x76@2x.png */,
-				06A70D921D7375F100DA95F5 /* Icon-App-76x76@3x.png */,
-				06A70D931D7375F100DA95F5 /* Icon-App-83.5x83.5@2x.png */,
+				06A70DA71D760C4C00DA95F5 /* update.png */,
+				06A70DA61D760C3400DA95F5 /* Icon */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -223,7 +237,7 @@
 			children = (
 				068AF7431D3EEA9C00DC3D30 /* ColorToday.entitlements */,
 				068AF73C1D3EE6AF00DC3D30 /* MainInterface.storyboard */,
-				068AF73D1D3EE6AF00DC3D30 /* RocketListToday.entitlements */,
+				068AF73D1D3EE6AF00DC3D30 /* ColorTodday.entitlements */,
 				068AF73E1D3EE6AF00DC3D30 /* TodayViewController.h */,
 				068AF73F1D3EE6AF00DC3D30 /* TodayViewController.m */,
 				06D297641D0B660000E5EBD3 /* Info.plist */,
@@ -277,6 +291,7 @@
 				06D297571D0B660000E5EBD3 /* Resources */,
 				940A2263BB9270409E46EB77 /* [CP] Embed Pods Frameworks */,
 				296B87720FA34AE6D90D0701 /* [CP] Copy Pods Resources */,
+				06A70DA21D73AC1E00DA95F5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -361,6 +376,7 @@
 				068AF73B1D3D996F00DC3D30 /* GoogleService-Info.plist in Resources */,
 				06A70D9F1D7375F100DA95F5 /* Icon-App-76x76@3x.png in Resources */,
 				06A70D941D7375F100DA95F5 /* Icon-App-29x29@1x.png in Resources */,
+				06A70DA81D760C4C00DA95F5 /* update.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,13 +385,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				068AF7401D3EE6AF00DC3D30 /* MainInterface.storyboard in Resources */,
-				068AF7411D3EE6AF00DC3D30 /* RocketListToday.entitlements in Resources */,
+				068AF7411D3EE6AF00DC3D30 /* ColorTodday.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		06A70DA21D73AC1E00DA95F5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [[ -d \"Frameworks\" ]]; then\nrm -fr Frameworks\nfi";
+		};
 		16A1E434A8E2339397C9CAC4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,7 +462,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ColorToday/Pods-ColorToday-frameworks.sh\"\n";
+			shellScript = "
+";
 			showEnvVarsInLog = 0;
 		};
 		A787E4BEDB22C78195B41129 /* [CP] Check Pods Manifest.lock */ = {
@@ -478,6 +508,7 @@
 				06BD29BF1D6633850092296D /* EventManager.m in Sources */,
 				06D297431D0B659300E5EBD3 /* AppDelegate.m in Sources */,
 				06D297791D0CC97400E5EBD3 /* AddAppsViewController.m in Sources */,
+				06A70DA51D74AF3F00DA95F5 /* WelcomeViewController.m in Sources */,
 				06D297401D0B659300E5EBD3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,8 +641,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Color/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GT.Color;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,8 +664,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Color/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GT.Color;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -648,7 +683,10 @@
 				CODE_SIGN_ENTITLEMENTS = ColorToday/ColorToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ColorToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GT.Color.ColorToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -664,7 +702,10 @@
 				CODE_SIGN_ENTITLEMENTS = ColorToday/ColorToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ColorToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GT.Color.ColorToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";

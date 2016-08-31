@@ -35,13 +35,11 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
 
 -(void) viewDidLoad {
     [super viewDidLoad];
-    
+    [_activityView stopAnimating];
     //API_KEY : AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0
     [_gmailButton setTitle:[[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Gmail" forState:UIControlStateNormal];
     [_healthKitButton setTitle:[[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+HealthKit" forState:UIControlStateNormal];
     [_remindersButton setTitle:[[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Reminders" forState:UIControlStateNormal];
-    
-    
     
     
     /* for Gmail auth */
@@ -65,32 +63,6 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
     } else {
         NSLog(@"Not signed in");
     }
-   // [self performSelectorOnMainThread:@selector(viewController:finishedWithAuth:error:) withObject:nil waitUntilDone:YES];
-   // [self performSelector:@selector(viewController:finishedWithAuth:error:) withObject:nil];
-    
-    GIDAuthentication* obj;
-    
-//    [obj refreshTokensWithHandler:^(GIDAuthentication *authentication, NSError *error){
-//        dispatch_async(dispatch_get_main_queue(),
-//                       ^{
-//                           NSLog(@"new token: %@", authentication.accessToken);
-//                           [USER_CACHE setValue:authentication.accessToken forKey:@"googleAccessToken"];
-//                       });
-//    }];
-    
-//    [obj getTokensWithHandler:^(GIDAuthentication *authentication, NSError *error){
-//        if (error != nil) {
-//            NSLog(@"error in new token: %@", error.localizedDescription);
-//        }
-//                dispatch_async(dispatch_get_main_queue(),
-//                               
-//                               ^{ NSLog(@"new token: %@", authentication.accessToken);
-//                                   
-//                               });
-//            }];
-    
-   // [self getNewTokenForGoogle];
-    
     
     NSLog(@"AT from UserDefaults on HS: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
 }
@@ -250,119 +222,112 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
 }
 
 -(void)makeHealthkitLabelVisible {
-    if(NSClassFromString(@"HKHealthStore") && [HKHealthStore isHealthDataAvailable])
-    {
-        // Add your HealthKit code here
-        HKHealthStore *healthStore = [[HKHealthStore alloc] init];
-        
-        // Share body mass, height and body mass index
-        NSSet *shareObjectTypes = [NSSet setWithObjects:
-                           //        [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass],
-                             //      [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight],
-                               //    [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMassIndex],
-                                   nil];
-        
-        // Read date of birth, biological sex and step count
-        NSSet *readObjectTypes  = [NSSet setWithObjects:
-                                  // [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth],
-                                   //[HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex],
-                                   [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],
-                                   nil];
-        
-        // Request access
-        [healthStore requestAuthorizationToShareTypes:nil
-                                            readTypes:readObjectTypes
-                                           completion:^(BOOL success, NSError *error) {
-                                               
-                                               if(success == YES)
-                                               {
-                                                   // Set your start and end date for your query of interest
-
-//                                                   NSDate *startDate; //= [[NSDate date] descriptionWithLocale:currentLocale];
-//                                                   NSDate *endDate;
-                                                   
-                                                   // Use the sample type for step count
-                                                   HKSampleType *sampleType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-                                                   
-                                                   
-                                                   
-                                                   // Create a predicate to set start/end date bounds of the query
-                                                   
-                                                   // Create a sort descriptor for sorting by start date
-                                                   NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:YES];
-                                                   
-                                                   //////////////
-                                                   NSCalendar *calendar = [NSCalendar currentCalendar];
-                                                   NSDateComponents *interval = [[NSDateComponents alloc] init];
-                                                   interval.day = 1;
-                                                   NSDateComponents *anchorComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
-                                                                                                    fromDate:[NSDate date]];
-                                                   anchorComponents.hour = 0;
-                                                   NSDate *anchorDate = [calendar dateFromComponents:anchorComponents];
-                                                   HKQuantityType *quantityType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-                                                   
-                                                   // Create the query
-                                                   HKStatisticsCollectionQuery *query = [[HKStatisticsCollectionQuery alloc] initWithQuantityType:quantityType
-                                                                                                                          quantitySamplePredicate:nil
-                                                                                                                                          options:HKStatisticsOptionCumulativeSum
-                                                                                                                                       anchorDate:anchorDate
-                                                                                                                               intervalComponents:interval];
-                                                   
-                                                   // Set the results handler
-                                                   
-                                                       NSDate *endDate = [NSDate date];
-                                                       NSDate *startDate = [calendar dateByAddingUnit:NSCalendarUnitDay
-                                                                                                value:-1
-                                                                                               toDate:endDate
-                                                                                              options:0];
-
-                                                   
-                                                   NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:[NSDate dateWithTimeIntervalSinceNow:0] options:HKQueryOptionStrictStartDate];
-
-                                                   //////////////
-                                                   __block int dailyAVG = 0;
-
-                                                   HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
-                                                                                                                predicate:predicate
-                                                                                                                    limit:HKObjectQueryNoLimit
-                                                                                                          sortDescriptors:@[sortDescriptor]
-                                                                                                           resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
-                                                                                                               if(!error && results)
-                                                                                                               {
-                                                                                                                   for(HKQuantitySample *samples in results)
-                                                                                                                   {
-                                                                                                               // NSLog(@"Result: %@", samples);
-                                                                                                                       dailyAVG += [[samples quantity] doubleValueForUnit:[HKUnit countUnit]];
-                                                                                                                   }
-                                                                                                                   NSLog(@"daily: %d", dailyAVG);
-                                                                                                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                                                       
-                                                                                                                       [_healthKitButton setEnabled:NO];
-                                                                                                                       
-                                                                                                                       [_healthKitButton setTitle:[NSString stringWithFormat:@"%d steps left", 10000-dailyAVG] forState:UIControlStateNormal];
-                                                                                                                       [_healthKitButton setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
-                                                                                                                       [USER_CACHE setValue:@"1" forKey:@"isAuthHealthkit"];
-                                                                                                                       [USER_CACHE setValue:[NSString stringWithFormat:@"%d", 10000-dailyAVG] forKey:@"HealthkitStepsCount"];
-                                                                                                                       [USER_CACHE synchronize];
-                                                                                                                   });
-                                                                                                                   
-                                                                                                               }
-                                                                                                               
-                                                                                                           }];
-                                                   
-                                                   // Execute the query
-                                                   [healthStore executeQuery:sampleQuery];
-                                                   
-                                               }
-                                               else
-                                               {
-                                                   // Determine if it was an error or if the
-                                                   // user just canceld the authorization request
-                                               }
-                                               
-                                           }];
-    }
+if(NSClassFromString(@"HKHealthStore") && [HKHealthStore isHealthDataAvailable])
+{
+    // Add your HealthKit code here
+    HKHealthStore *healthStore = [[HKHealthStore alloc] init];
     
+    // Read date of birth, biological sex and step count
+    NSSet *readObjectTypes  = [NSSet setWithObjects:
+                              // [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth],
+                               //[HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex],
+                               [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],
+                               nil];
+    
+    // Request access
+    [healthStore requestAuthorizationToShareTypes:nil
+                                        readTypes:readObjectTypes
+                                       completion:^(BOOL success, NSError *error) {
+                                           
+     if(success == YES)
+   {
+       // Set your start and end date for your query of interest
+       
+       // Use the sample type for step count
+       HKSampleType *sampleType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+       
+       
+       
+       // Create a predicate to set start/end date bounds of the query
+       
+       // Create a sort descriptor for sorting by start date
+       NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:YES];
+       
+       //////////////
+       NSCalendar *calendar = [NSCalendar currentCalendar];
+       NSDateComponents *interval = [[NSDateComponents alloc] init];
+       interval.day = 1;
+       NSDateComponents *anchorComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                        fromDate:[NSDate date]];
+       anchorComponents.hour = 0;
+       NSDate *anchorDate = [calendar dateFromComponents:anchorComponents];
+       HKQuantityType *quantityType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+       
+       // Create the query
+       HKStatisticsCollectionQuery *query = [[HKStatisticsCollectionQuery alloc] initWithQuantityType:quantityType
+                                                                              quantitySamplePredicate:nil
+                                                                                              options:HKStatisticsOptionCumulativeSum
+                                                                                           anchorDate:anchorDate
+                                                                                   intervalComponents:interval];
+       
+       // Set the results handler
+       
+           NSDate *endDate = [NSDate date];
+       NSDate* newDate = [calendar startOfDayForDate:endDate];
+       
+           NSDate *startDate = [calendar dateByAddingUnit:NSCalendarUnitDay
+                                                    value:-1
+                                                   toDate:endDate
+                                                  options:0];
+
+       
+       NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:newDate endDate:[NSDate date] options:HKQueryOptionStrictStartDate];
+
+       //////////////
+       __block int dailyAVG = 0;
+
+       HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
+                                                                    predicate:predicate
+                                                                        limit:HKObjectQueryNoLimit
+                                                              sortDescriptors:@[sortDescriptor]
+                                                               resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
+                   if(!error && results)
+                   {
+                       for(HKQuantitySample *samples in results)
+                       {
+                   // NSLog(@"Result: %@", samples);
+                           dailyAVG += [[samples quantity] doubleValueForUnit:[HKUnit countUnit]];
+                       }
+                       NSLog(@"daily: %d", dailyAVG);
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           
+                           [_healthKitButton setEnabled:NO];
+                           
+            if (dailyAVG > 10000)
+                    dailyAVG = 10000;
+                [_healthKitButton setTitle:[NSString stringWithFormat:@"%d steps left", 10000-dailyAVG] forState:UIControlStateNormal];
+               [_healthKitButton setTitleColor:[UIColor colorWithRed:27.0/100.0 green:86.0/100.0 blue:37.0/100.0 alpha:1.0] forState:UIControlStateNormal];
+               [USER_CACHE setValue:@"1" forKey:@"isAuthHealthkit"];
+               [USER_CACHE setValue:[NSString stringWithFormat:@"%d", 10000-dailyAVG] forKey:@"HealthkitStepsCount"];
+               [USER_CACHE synchronize];
+            });
+
+            }
+
+            }];
+       
+       // Execute the query
+       [healthStore executeQuery:sampleQuery];
+       
+   }
+   else
+   {
+       // Determine if it was an error or if the
+       // user just canceld the authorization request
+   }
+   
+}];
+}
     
     
 }
@@ -399,9 +364,6 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
 
 -(void)makeRemindersLabelVisible {
    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    EKCalendar *defaultReminderList = [eventStore defaultCalendarForNewReminders];
-    NSArray *reminderLists = [eventStore calendarsForEntityType:EKEntityTypeReminder];
-
 
     NSPredicate *predicate = [eventStore predicateForIncompleteRemindersWithDueDateStarting:nil ending:nil calendars:[eventStore calendarsForEntityType:EKEntityTypeReminder]];
     BOOL needsToRequestAccessToEventStore = NO; // iOS 5 behavior
@@ -419,10 +381,10 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
                     // You can use the event store now
                     [_remindersButton setEnabled:NO];
                     
-                    [_remindersButton setTitle:[NSString stringWithFormat:@"finish %ld %@", reminders.count, (reminders.count == 1) ? @"task" : @"tasks"] forState:UIControlStateNormal];
+                    [_remindersButton setTitle:[NSString stringWithFormat:@"finish %ld %@", (unsigned long)reminders.count, (reminders.count == 1) ? @"task" : @"tasks"] forState:UIControlStateNormal];
                     [_remindersButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
                     [USER_CACHE setValue:@"1" forKey:@"isAuthReminders"];
-                    [USER_CACHE setValue:[NSString stringWithFormat:@"%ld", reminders.count] forKey:@"remindersTasksCount"];
+                    [USER_CACHE setValue:[NSString stringWithFormat:@"%ld", (unsigned long)reminders.count] forKey:@"remindersTasksCount"];
                     [USER_CACHE synchronize];
                     
                 });
@@ -438,10 +400,10 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
           dispatch_async(dispatch_get_main_queue(), ^{
     [_remindersButton setEnabled:NO];
     
-    [_remindersButton setTitle:[NSString stringWithFormat:@"finish %ld %@", reminders.count, (reminders.count == 1) ? @"task" : @"tasks"] forState:UIControlStateNormal];
+    [_remindersButton setTitle:[NSString stringWithFormat:@"finish %ld %@", (unsigned long)reminders.count, (reminders.count == 1) ? @"task" : @"tasks"] forState:UIControlStateNormal];
     [_remindersButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    // [USER_CACHE setValue:@"1" forKey:@"isAuthReminders"];
-    [USER_CACHE setValue:[NSString stringWithFormat:@"%ld", reminders.count] forKey:@"rocketlistTasksCount"];
+     [USER_CACHE setValue:@"1" forKey:@"isAuthReminders"];
+    [USER_CACHE setValue:[NSString stringWithFormat:@"%ld", (unsigned long)reminders.count] forKey:@"remindersTasksCount"];
     [USER_CACHE synchronize];
           });
       }];
@@ -450,65 +412,8 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
         NSLog(@"access denied");
     }
     
-    
-    /* EKEventStore *store = [[EKEventStore alloc] init];
-    [store requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-        NSLog(@"permission");
-    }];
-    
-    NSPredicate *predicate = [store predicateForRemindersInCalendars:nil];
-    
-    [store fetchRemindersMatchingPredicate:predicate completion:^(NSArray *reminders) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [_remindersButton setEnabled:NO];
-            
-            [_remindersButton setTitle:[NSString stringWithFormat:@"finish %ld tasks", reminders.count] forState:UIControlStateNormal];
-            [_remindersButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-            [USER_CACHE setValue:@"1" forKey:@"isAuthReminders"];
-            [USER_CACHE setValue:[NSString stringWithFormat:@"%ld", reminders.count] forKey:@"rocketlistTasksCount"];
-            [USER_CACHE synchronize];
-        });
-        
-    
-     
-     }]; */
-    
 }
 
-//- (void)authUI:(FIRAuthUI *)authUI
-//didSignInWithUser:(nullable FIRUser *)user
-//         error:(nullable NSError *)error {
-//    if (!error) {
-//        [USER_CACHE setValue:@"1" forKey:@"isAuthRocketlist"];
-//        [USER_CACHE setValue:user.email forKey:@"userEmail"];
-//        [USER_CACHE synchronize];
-//        NSLog(@"isAuth after auth: %@", [USER_CACHE valueForKey:@"isAuth"]);
-//        NSLog(@"Email after auth: %@", [USER_CACHE valueForKey:@"userEmail"]);
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            [self makeRocketListLabelVisible];
-//        });
-//    }
-//    else {
-//        NSLog(@"error in auth");
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    }
-//
-//    // Implement this method to handle signed in user or error if any.
-//}
-//
-//
-//- (IBAction)rocketListChoosed:(id)sender {
-//    FIRAuthUI *authUI = [FIRAuthUI authUI];
-//    authUI.delegate = self;
-//
-//    UIViewController *authViewController = [authUI authViewController];
-//    if (![[USER_CACHE valueForKey:@"isAuthFirebase"] isEqualToString:@"1"]) {
-//        [self presentViewController:authViewController animated:NO completion:nil];
-//        [USER_CACHE setValue:@"1" forKey:@"isAuth"];
-//    }
-//}
 
 
 - (IBAction)gmailChoosed:(id)sender {
@@ -572,5 +477,28 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
         [self makeHealthkitLabelVisible];
     });
 }
+
+
+- (IBAction)update:(id)sender {
+    [_activityView startAnimating];
+    [_updateButton setHidden:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([USER_CACHE valueForKey:@"isAuthGmail"])
+            [self makeGmailLabelVisibleWithToken:[USER_CACHE valueForKey:@"googleAccessToken"]];
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([USER_CACHE valueForKey:@"isAuthHealthkit"])
+            [self makeHealthkitLabelVisible];
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([USER_CACHE valueForKey:@"isAuthReminders"])
+            [self makeRemindersLabelVisible];
+    });
+    [_activityView performSelector:@selector(stopAnimating) withObject:nil afterDelay:1];
+    
+    [_updateButton performSelector:@selector(setHidden:) withObject:nil afterDelay:1];
+
+}
+
 
 @end

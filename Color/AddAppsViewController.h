@@ -23,4 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *remindersButton;
 @property (weak, nonatomic) IBOutlet UIButton *healthKitButton;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *updateButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+
 @end
