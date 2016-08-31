@@ -16,7 +16,7 @@ target ‘Color’ do
 end
 
 target ‘ColorToday’ do
-    pod 'Firebase'
+    
 end
 
 pod 'Firebase/Core'

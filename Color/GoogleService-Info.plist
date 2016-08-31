@@ -26,7 +26,7 @@
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_APPINVITE_ENABLED</key>
 	<false/>
 	<key>IS_GCM_ENABLED</key>
@@ -36,6 +36,6 @@
 	<key>GOOGLE_APP_ID</key>
 	<string>1:364487166958:ios:a27982f378e81aad</string>
 	<key>DATABASE_URL</key>
-	<string>https://rocketlist.firebaseio.com</string>
+	<string>https://color-21c74.firebaseio.com/</string>
 </dict>
 </plist>
