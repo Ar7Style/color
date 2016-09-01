@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure];
-   [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
+    [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
     [[GIDSignIn sharedInstance] signInSilently];
     return YES;

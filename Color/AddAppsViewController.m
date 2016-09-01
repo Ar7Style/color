@@ -36,6 +36,27 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
 -(void) viewDidLoad {
     [super viewDidLoad];
     [_activityView stopAnimating];
+    
+    GTMOAuth2Authentication *auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
+                                                                                          clientID:kClientID
+                                                                                      clientSecret:nil];
+    
+    NSLog(@"accessToken: %@", auth.accessToken); //If the token is expired, this will be nil
+    
+    
+    // authorizeRequest will refresh the token, even though the NSURLRequest passed is nil
+    [auth authorizeRequest:nil
+         completionHandler:^(NSError *error) {
+             if (error) {
+                 NSLog(@"error: %@", error);
+             }
+             else {
+                 NSLog(@"accessToken from handler: %@", auth.accessToken); //it shouldn´t be nil
+                 [USER_CACHE setValue:auth.accessToken forKey:@"googleAccessToken"];
+             }
+         }];
+
+    
     //API_KEY : AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0
     [_gmailButton setTitle:[[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Gmail" forState:UIControlStateNormal];
     [_healthKitButton setTitle:[[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+HealthKit" forState:UIControlStateNormal];
@@ -63,6 +84,7 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
     } else {
         NSLog(@"Not signed in");
     }
+    
     
     NSLog(@"AT from UserDefaults on HS: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
 }
@@ -171,11 +193,10 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
     }
     else {
         self.service.authorizer = authResult;
-        //[[GIDSignIn sharedInstance]signIn];
-        //[authResult ref]
         NSLog(@"Token: %@ id: %@ refreshed: %@", authResult.accessToken, authResult.userID, authResult.refreshToken);
         [self makeGmailLabelVisibleWithToken:authResult.accessToken]; [authResult refreshToken];
         [USER_CACHE setValue:authResult.accessToken forKey:@"googleAccessToken"];
+        [USER_CACHE setValue:authResult.refreshToken forKey:@"googleRefreshToken"];
         [USER_CACHE setValue:@"1" forKey:@"isAuthGmail"];
         [USER_CACHE synchronize];
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -207,7 +228,6 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
     [_gmailButton setEnabled:NO];
     
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/gmail/v1/users/me/labels/UNREAD?access_token=%@", accessToken]]; //[USER_CACHE valueForKey:@"googleAccessToken"]]];
-   // NSLog(@"Access token: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"JSON from Google: %@", responseObject);
@@ -295,7 +315,6 @@ if(NSClassFromString(@"HKHealthStore") && [HKHealthStore isHealthDataAvailable])
                    {
                        for(HKQuantitySample *samples in results)
                        {
-                   // NSLog(@"Result: %@", samples);
                            dailyAVG += [[samples quantity] doubleValueForUnit:[HKUnit countUnit]];
                        }
                        NSLog(@"daily: %d", dailyAVG);
@@ -433,25 +452,6 @@ if(NSClassFromString(@"HKHealthStore") && [HKHealthStore isHealthDataAvailable])
 
 }
 
-- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    // Perform any operations on signed in user here.
-    if (error == nil) {
-        NSString *userId = user.userID;
-        NSLog(@"didSignInForUser with user: %@", user.userID);
-    } else {
-        NSLog(@"didSignInForUser fail with error %@", error.localizedDescription);
-    }
-}
-
-- (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    // Perform any operations when the user disconnects from app here.
-    NSLog(@"disconnected");
-}
-
-- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error {
-    NSLog(@"%@",error.description);
-    NSLog(@"signInWillDispatch");
-}
 
 // Present a view that prompts the user to sign in with Google
 - (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController {
