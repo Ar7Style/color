@@ -12,7 +12,7 @@
 #import "GTLGmail.h"
 #import <GoogleSignIn/GoogleSignIn.h>
 
-@interface AddAppsViewController : UIViewController <GIDSignInUIDelegate, GIDSignInDelegate>
+@interface AddAppsViewController : UIViewController <GIDSignInUIDelegate, GIDSignInDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) GTLServiceGmail *service;
 @property (nonatomic, strong) UITextView *output;

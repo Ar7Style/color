@@ -21,9 +21,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure];
+    FIROptions* options = [[FIROptions alloc] init];
+    options = [options initWithGoogleAppID:@"1:1041817891083:ios:a27982f378e81aad"
+                        bundleID:@"GT.Color"
+                     GCMSenderID:@"1041817891083"
+                          APIKey:@"AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0"
+                        clientID:@"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa9qr.apps.googleusercontent.com"
+                      trackingID:@""
+                 androidClientID:nil
+                     databaseURL:@"https://color-21c74.firebaseio.com"
+                   storageBucket:@"color-21c74.appspot.com"
+               deepLinkURLScheme:@""];
+    [FIRApp configureWithName:@"color" options:options];
+    
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
     [[GIDSignIn sharedInstance] signInSilently];
+    
+    
+
     return YES;
 }
 

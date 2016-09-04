@@ -11,6 +11,7 @@
 #import <HealthKit/HealthKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import "EventManager.h"
+#import "WelcomeViewController.h"
 
 #import <GoogleSignIn/GoogleSignIn.h>
 #import "AFOAuth2Manager.h"
@@ -37,30 +38,28 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
     [super viewDidLoad];
     [_activityView stopAnimating];
     
-    GTMOAuth2Authentication *auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
-                                                                                          clientID:kClientID
-                                                                                      clientSecret:nil];
-    
-    NSLog(@"accessToken: %@", auth.accessToken); //If the token is expired, this will be nil
-    
-    
-    // authorizeRequest will refresh the token, even though the NSURLRequest passed is nil
-    [auth authorizeRequest:nil
-         completionHandler:^(NSError *error) {
-             if (error) {
-                 NSLog(@"error: %@", error);
-             }
-             else {
-                 NSLog(@"accessToken from handler: %@", auth.accessToken); //it shouldn´t be nil
-                 [USER_CACHE setValue:auth.accessToken forKey:@"googleAccessToken"];
-             }
-         }];
-
-    
-    //API_KEY : AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0
-    [_gmailButton setTitle:[[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Gmail" forState:UIControlStateNormal];
-    [_healthKitButton setTitle:[[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+HealthKit" forState:UIControlStateNormal];
-    [_remindersButton setTitle:[[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Reminders" forState:UIControlStateNormal];
+//    GTMOAuth2Authentication *auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
+//                                                                                          clientID:kClientID
+//                                                                                      clientSecret:nil];
+//    
+//    NSLog(@"accessToken: %@", auth.accessToken); //If the token is expired, this will be nil
+//    
+//    
+//    // authorizeRequest will refresh the token, even though the NSURLRequest passed is nil
+//    [auth authorizeRequest:nil
+//         completionHandler:^(NSError *error) {
+//             if (error) {
+//                 NSLog(@"error: %@", error);
+//                 NSLog(@"test 1");
+//             }
+//             else {
+//                 NSLog(@"accessToken from handler: %@", auth.accessToken); //it shouldn´t be nil
+//                 [USER_CACHE setValue:auth.accessToken forKey:@"googleAccessToken"];
+//                 [USER_CACHE synchronize];
+//                 NSLog(@"test 2");
+//                 
+//             }
+//         }];
     
     
     /* for Gmail auth */
@@ -70,26 +69,28 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
                                                           clientID:kClientID
                                                       clientSecret:nil];
     
-    // [GIDSignIn sharedInstance].delegate = self;
     [[GIDSignIn sharedInstance] setScopes:[NSArray arrayWithObject: @"https://www.googleapis.com/auth/plus.me"]];
     [GIDSignIn sharedInstance].clientID = kClientID;
-//    [[GIDSignIn sharedInstance] signIn];
+    
+   
 
-   // [[GIDSignIn sharedInstance] signInSilently];
+    [_gmailButton setTitle:[[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Gmail" forState:UIControlStateNormal];
+    [_healthKitButton setTitle:[[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+HealthKit" forState:UIControlStateNormal];
+    [_remindersButton setTitle:[[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"] ? @"Wait a sec..." : @"+Reminders" forState:UIControlStateNormal];
     
-   NSLog(@"refresh token: %@", [GIDSignIn sharedInstance].currentUser.authentication.accessTokenExpirationDate);
-    
-    if ([GIDSignIn sharedInstance].currentUser) {
-        NSLog(@"Signed in");
-    } else {
-        NSLog(@"Not signed in");
-    }
     
     
     NSLog(@"AT from UserDefaults on HS: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    if ([[USER_CACHE valueForKey:@"isAuth"] length] == 0) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        WelcomeViewController *welcomeVC = (WelcomeViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
+        [self presentViewController:welcomeVC animated:NO completion:nil];
+    }
+ 
 }
 
 -(void) getNewTokenForGoogle {
@@ -110,18 +111,34 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
 
 -(void)viewWillAppear:(BOOL)animated {
     
+    GTMOAuth2Authentication *auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
+                                                                                          clientID:kClientID
+                                                                                      clientSecret:nil];
+    
+    NSLog(@"accessToken: %@", auth.accessToken); //If the token is expired, this will be nil
+    
+    
+    // authorizeRequest will refresh the token, even though the NSURLRequest passed is nil
+    [auth authorizeRequest:nil
+         completionHandler:^(NSError *error) {
+             if (error) {
+                 NSLog(@"error: %@", error);
+             }
+             else {
+                 NSLog(@"accessToken from handler: %@", auth.accessToken); //it shouldn´t be nil
+                 [USER_CACHE setValue:auth.accessToken forKey:@"googleAccessToken"];
+             }
+         }];
+    
     if ( [[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"] || [[USER_CACHE valueForKey:@"isAuthHealthkit"] isEqualToString:@"1"] || [[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"]) {
         [_topLabel setHidden:YES];
     }
     
-    
-    NSLog(@"test 1");
-    if ([[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"]) {
+        if ([[USER_CACHE valueForKey:@"isAuthReminders"] isEqualToString:@"1"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self makeRemindersLabelVisible];
         });
     }
-    NSLog(@"test 2");
 
     if ([[USER_CACHE valueForKey:@"isAuthGmail"] isEqualToString:@"1"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -139,12 +156,6 @@ static NSString *const kClientID = @"1041817891083-3c1238ola1dv1qj11b4eg1v1aqefa
 
 /// not used
 - (void)fetchNumberOfUnreadMessages {
-    //    self.output.text = @"Getting labels...";
-    //    GTLQueryGmail *query = [GTLQueryGmail queryForUsersLabelsList];
-    //    [self.service executeQuery:query
-    //                      delegate:self
-    //             didFinishSelector:@selector(displayResultWithTicket:finishedWithObject:error:)];
-    //                                          //secret:@"AIzaSyCKhjdexJyKPBF34tC20XblaRcuw_PH1K0"];
     
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/gmail/v1/users/me/labels/UNREAD?access_token=%@", [USER_CACHE valueForKey:@"googleAccessToken"]]];
     NSLog(@"Access token: %@", [USER_CACHE valueForKey:@"googleAccessToken"]);
@@ -295,15 +306,9 @@ if(NSClassFromString(@"HKHealthStore") && [HKHealthStore isHealthDataAvailable])
            NSDate *endDate = [NSDate date];
        NSDate* newDate = [calendar startOfDayForDate:endDate];
        
-           NSDate *startDate = [calendar dateByAddingUnit:NSCalendarUnitDay
-                                                    value:-1
-                                                   toDate:endDate
-                                                  options:0];
-
        
        NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:newDate endDate:[NSDate date] options:HKQueryOptionStrictStartDate];
 
-       //////////////
        __block int dailyAVG = 0;
 
        HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
@@ -351,35 +356,30 @@ if(NSClassFromString(@"HKHealthStore") && [HKHealthStore isHealthDataAvailable])
     
 }
 
-//-(void)makeRocketlistLabelVisible {
-//    [_rocketListButton setEnabled:NO];
-//
-//    __block NSInteger taskCount;
-//    NSString* userEmail = [USER_CACHE valueForKey:@"userEmail"];
-//    NSString *tempEmail = [userEmail stringByReplacingOccurrencesOfString:@"@" withString:@""];
-//    NSString *temp = [tempEmail stringByReplacingOccurrencesOfString:@"-" withString:@""];
-//    
-//    NSString *filteredUserEmail = [temp stringByReplacingOccurrencesOfString:@"." withString:@""];
-//    if (filteredUserEmail.length == 0) return;
-//    
-//    //   Get a reference to our posts
-//    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-//    FIRDatabaseReference* ref = [rootRef child:[NSString stringWithFormat:@"notes/%@", filteredUserEmail]];
-//    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//        NSArray* snapshotValue = snapshot.value;
-//        
-//        NSLog(@"snapshotValue count: %lu", (unsigned long)snapshotValue.count);
-//        taskCount =  snapshotValue.count;
-//        [_rocketListButton setTitle:[NSString stringWithFormat:@"finish %ld tasks", taskCount] forState:UIControlStateNormal];
-//        [_rocketListButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//        [USER_CACHE setValue:[NSString stringWithFormat:@"%ld",(long)taskCount] forKey:@"rocketlistTasksCount"];
-//        [USER_CACHE synchronize];
-//        
-//        NSLog(@"Tasks count from HS: %@",[USER_CACHE valueForKey:@"rocketlistTasksCount"] );
-//        
-//    }];
-//    
-//}
+-(void)makeRocketlistLabelVisible {
+
+    __block NSInteger taskCount;
+    NSString* userEmail = [USER_CACHE valueForKey:@"userEmail"];
+    NSString *tempEmail = [userEmail stringByReplacingOccurrencesOfString:@"@" withString:@""];
+    NSString *temp = [tempEmail stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    NSString *filteredUserEmail = [temp stringByReplacingOccurrencesOfString:@"." withString:@""];
+    if (filteredUserEmail.length == 0) return;
+    
+    //   Get a reference to our posts
+    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+    FIRDatabaseReference* ref = [rootRef child:[NSString stringWithFormat:@"notes/%@", filteredUserEmail]];
+    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        NSArray* snapshotValue = snapshot.value;
+        
+        NSLog(@"snapshotValue count: %lu", (unsigned long)snapshotValue.count);
+        taskCount =  snapshotValue.count;
+      //  [_rocketListButton setTitle:[NSString stringWithFormat:@"finish %ld tasks", taskCount] forState:UIControlStateNormal];
+      //  [_rocketListButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        
+    }];
+    
+}
 
 -(void)makeRemindersLabelVisible {
    EKEventStore *eventStore = [[EKEventStore alloc] init];
@@ -445,10 +445,12 @@ if(NSClassFromString(@"HKHealthStore") && [HKHealthStore isHealthDataAvailable])
         signin.uiDelegate = self;
         [signin hasAuthInKeychain];
         [signin signIn];
+   
     } else {
         [self makeGmailLabelVisibleWithToken:[USER_CACHE valueForKey:@"googleAccessToken"]];
-        
     }
+    [USER_CACHE setValue:@"1" forKey:@"isAuthGmail"];
+    [USER_CACHE synchronize];
 
 }
 
