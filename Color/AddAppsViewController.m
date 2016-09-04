@@ -7,7 +7,6 @@
 //
 
 #import "AddAppsViewController.h"
-#import "TasksViewController.h"
 #import <HealthKit/HealthKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import "EventManager.h"

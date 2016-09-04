@@ -27,7 +27,7 @@
 		06A70DA51D74AF3F00DA95F5 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A70DA41D74AF3F00DA95F5 /* WelcomeViewController.m */; };
 		06A70DA81D760C4C00DA95F5 /* update.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A70DA71D760C4C00DA95F5 /* update.png */; };
 		06BD29BC1D6619BD0092296D /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06BD29BB1D6619BD0092296D /* EventKit.framework */; };
-		06BD29BF1D6633850092296D /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BD29BE1D6633850092296D /* EventManager.m */; };
+		06C3A6F21D7CE4F7007F1306 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C3A6F11D7CE4F7007F1306 /* EventManager.m */; };
 		06D297401D0B659300E5EBD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D2973F1D0B659300E5EBD3 /* main.m */; };
 		06D297431D0B659300E5EBD3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D297421D0B659300E5EBD3 /* AppDelegate.m */; };
 		06D297461D0B659300E5EBD3 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D297451D0B659300E5EBD3 /* TestViewController.m */; };
@@ -38,7 +38,6 @@
 		06D297671D0B660000E5EBD3 /* ColorToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 06D297591D0B660000E5EBD3 /* ColorToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		06D297731D0C708800E5EBD3 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06D297721D0C708800E5EBD3 /* GoogleSignIn.bundle */; };
 		06D297791D0CC97400E5EBD3 /* AddAppsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D297781D0CC97400E5EBD3 /* AddAppsViewController.m */; };
-		06D2977C1D0CC9C800E5EBD3 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D2977B1D0CC9C800E5EBD3 /* TasksViewController.m */; };
 		F8BF2A0E1F6C6114D779CDD6 /* Pods_Color.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29CE458C781C0AD605191A1 /* Pods_Color.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,8 +90,8 @@
 		06A70DA41D74AF3F00DA95F5 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		06A70DA71D760C4C00DA95F5 /* update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update.png; sourceTree = "<group>"; };
 		06BD29BB1D6619BD0092296D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
-		06BD29BD1D6633850092296D /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
-		06BD29BE1D6633850092296D /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
+		06C3A6F01D7CE4F7007F1306 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
+		06C3A6F11D7CE4F7007F1306 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		06D2973B1D0B659300E5EBD3 /* Color.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Color.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D2973F1D0B659300E5EBD3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06D297411D0B659300E5EBD3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,8 +108,6 @@
 		06D297721D0C708800E5EBD3 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		06D297771D0CC97400E5EBD3 /* AddAppsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAppsViewController.h; sourceTree = "<group>"; };
 		06D297781D0CC97400E5EBD3 /* AddAppsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAppsViewController.m; sourceTree = "<group>"; };
-		06D2977A1D0CC9C800E5EBD3 /* TasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
-		06D2977B1D0CC9C800E5EBD3 /* TasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
 		1B7D84564095AF0E3FEA99CE /* Pods-Color.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Color.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Color/Pods-Color.debug.xcconfig"; sourceTree = "<group>"; };
 		3C26D5E9A3B76E55E61D0428 /* Pods-ColorToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-ColorToday/Pods-ColorToday.release.xcconfig"; sourceTree = "<group>"; };
 		8F20592056189229992F0A52 /* Pods-Color.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Color.release.xcconfig"; path = "Pods/Target Support Files/Pods-Color/Pods-Color.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,8 +185,6 @@
 				068AF72F1D3D80C200DC3D30 /* Color.entitlements */,
 				06D297411D0B659300E5EBD3 /* AppDelegate.h */,
 				06D297421D0B659300E5EBD3 /* AppDelegate.m */,
-				06BD29BD1D6633850092296D /* EventManager.h */,
-				06BD29BE1D6633850092296D /* EventManager.m */,
 				06A70DA31D74AF3F00DA95F5 /* WelcomeViewController.h */,
 				06A70DA41D74AF3F00DA95F5 /* WelcomeViewController.m */,
 				06D297441D0B659300E5EBD3 /* TestViewController.h */,
@@ -197,8 +192,6 @@
 				06D297471D0B659300E5EBD3 /* Main.storyboard */,
 				06D297771D0CC97400E5EBD3 /* AddAppsViewController.h */,
 				06D297781D0CC97400E5EBD3 /* AddAppsViewController.m */,
-				06D2977A1D0CC9C800E5EBD3 /* TasksViewController.h */,
-				06D2977B1D0CC9C800E5EBD3 /* TasksViewController.m */,
 				06D2974A1D0B659300E5EBD3 /* Assets.xcassets */,
 				06D2974C1D0B659300E5EBD3 /* LaunchScreen.storyboard */,
 				06D2974F1D0B659300E5EBD3 /* Info.plist */,
@@ -211,6 +204,8 @@
 		06D2973E1D0B659300E5EBD3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				06C3A6F01D7CE4F7007F1306 /* EventManager.h */,
+				06C3A6F11D7CE4F7007F1306 /* EventManager.m */,
 				06D2973F1D0B659300E5EBD3 /* main.m */,
 				06A70DA71D760C4C00DA95F5 /* update.png */,
 				06A70DA61D760C3400DA95F5 /* Icon */,
@@ -500,9 +495,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				06D297461D0B659300E5EBD3 /* TestViewController.m in Sources */,
-				06D2977C1D0CC9C800E5EBD3 /* TasksViewController.m in Sources */,
-				06BD29BF1D6633850092296D /* EventManager.m in Sources */,
 				06D297431D0B659300E5EBD3 /* AppDelegate.m in Sources */,
+				06C3A6F21D7CE4F7007F1306 /* EventManager.m in Sources */,
 				06D297791D0CC97400E5EBD3 /* AddAppsViewController.m in Sources */,
 				06A70DA51D74AF3F00DA95F5 /* WelcomeViewController.m in Sources */,
 				06D297401D0B659300E5EBD3 /* main.m in Sources */,
